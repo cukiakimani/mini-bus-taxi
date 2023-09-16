@@ -7,12 +7,13 @@ extends Node3D
 @export var laneOffset : float = 3
 @export var turnSpeed : float = 5.0
 
-var t : Tween
+var _basePosition : Vector3;
 var _move : float
 var _turning : float = 0.0
 
 func _ready():
 	spring.reset(position)
+	_basePosition = position;
 	pass
 	
 func _physics_process(delta):
@@ -21,7 +22,7 @@ func _physics_process(delta):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if showDebug:
-		debugLabel.text = str(get_viewport().size);
+		debugLabel.text = str(position);
 	
 	position = spring.position
 	
@@ -32,7 +33,7 @@ func _process(delta):
 	
 	_turning += turnSpeed * delta * _move
 	_turning = clampf(_turning, -laneOffset, laneOffset)
-	spring.pull(_turning * Vector3.RIGHT)
+	spring.pull(_basePosition + _turning * Vector3.RIGHT)
 
 func _input(event):
 	if event is InputEventScreenTouch:
