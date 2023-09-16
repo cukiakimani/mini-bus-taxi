@@ -13,7 +13,7 @@ var _turning : float = 0.0
 
 func _ready():
 	spring.reset(position)
-	_basePosition = position;
+	_basePosition = position
 	pass
 	
 func _physics_process(delta):
@@ -22,7 +22,7 @@ func _physics_process(delta):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if showDebug:
-		debugLabel.text = str(position);
+		debugLabel.text = str(position)
 	
 	position = spring.position
 	
@@ -46,4 +46,4 @@ func _input(event):
 		else:
 			_move = 0
 	else: if event.is_action("move_left") or event.is_action("move_right"):
-		_move = Input.get_axis("move_right", "move_left");
+		_move = Input.get_axis("move_right", "move_left")

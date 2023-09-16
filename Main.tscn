@@ -1,16 +1,19 @@
-[gd_scene load_steps=10 format=3 uid="uid://ci6ff7yrpc2tt"]
+[gd_scene load_steps=12 format=3 uid="uid://bcomp7spiheix"]
 
 [ext_resource type="PackedScene" uid="uid://5t3mpvixsnrf" path="res://Car.tscn" id="1"]
 [ext_resource type="Environment" uid="uid://c8ewrv8en06sm" path="res://default_env.tres" id="2"]
 [ext_resource type="Script" path="res://scripts/spring.gd" id="3_nbopn"]
 [ext_resource type="Script" path="res://scripts/DebugLabel.gd" id="4_7osqp"]
 [ext_resource type="Material" uid="uid://dsgkjn75owxjv" path="res://lane_marker.tres" id="5_u23qh"]
+[ext_resource type="Script" path="res://scripts/lanes.gd" id="6_8ycd8"]
 
 [sub_resource type="Resource" id="Resource_hrnfl"]
 script = ExtResource("3_nbopn")
 percentageDecay = 0.05
 frequency = 3.0
 timeDecay = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fn4dc"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_hldji"]
 
@@ -35,7 +38,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 debugLabel = NodePath("../Control/DebugLabel")
 showDebug = true
 spring = SubResource("Resource_hrnfl")
+laneOffset = 3.5
 turnSpeed = 18.0
+
+[node name="MeshInstance3D" parent="Car/CharacterBody3D" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_fn4dc")
 
 [node name="Car2" parent="." instance=ExtResource("1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.027, 1, 0)
@@ -76,11 +83,13 @@ transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
 mesh = SubResource("PlaneMesh_3jeks")
 
 [node name="Lanes" type="MeshInstance3D" parent="Road"]
-transform = Transform3D(0.04, 0, 0, 0, 0.01, 0, 0, 0, 1, 0, 0.0001, 0)
+transform = Transform3D(0.05, 0, 0, 0, 0.01, 0, 0, 0, 1, 0, 0.0001, 0)
 material_override = ExtResource("5_u23qh")
 mesh = SubResource("PlaneMesh_40dlt")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("5_u23qh")
+script = ExtResource("6_8ycd8")
+speed = 1.0
 
 [editable path="Car"]
 [editable path="Car2"]
