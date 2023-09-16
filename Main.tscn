@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bcomp7spiheix"]
+[gd_scene load_steps=12 format=3 uid="uid://cjfm0kvwf3ho5"]
 
 [ext_resource type="PackedScene" uid="uid://5t3mpvixsnrf" path="res://Car.tscn" id="1"]
 [ext_resource type="Environment" uid="uid://c8ewrv8en06sm" path="res://default_env.tres" id="2"]
@@ -68,6 +68,7 @@ grow_vertical = 2
 script = ExtResource("4_7osqp")
 
 [node name="DebugLabel" type="Label" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0

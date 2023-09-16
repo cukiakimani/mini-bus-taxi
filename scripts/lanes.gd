@@ -12,6 +12,5 @@ func _process(delta):
 	if material:
 		var uv_offset = material.get_uv1_offset()
 		uv_offset += Vector3.UP * speed * delta
-		print(uv_offset)
 		material.set_uv1_offset(uv_offset)
 		self.set_surface_override_material(0, material)
